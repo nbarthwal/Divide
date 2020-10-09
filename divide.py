@@ -43,22 +43,11 @@ y.reverse()
 x.reverse()
 
 for i in range(0, len(x)):
-    z = carry - (x[i]*k)
-    (dz, rz) = div_mod(z)
-    new_y = rz + y[i]
-
-    print(dz, rz, new_y)
-
-    #(dz, dr) = div_mod(z)
-    #set(y, i, dr)
-    #carry = dz + dx
-
-    print(i, carry, y)
-    #(carry, z) = div_mod(carry + y[i+1] - k*x[i])
-    #y[i+1] = z
-
-# carry = carry + y[0]
-#del y[0]
-# print(0, carry, y)
+    (carry, y[i+1]) = div_mod(carry + B*y[i+1] - k*x[i])
+carry += y[0]
+del y[0]
+y.reverse()
+y[0] += B * carry
+print(y)
 
 
