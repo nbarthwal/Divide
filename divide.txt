@@ -1,0 +1,91 @@
+list<integer> Y
+const list<integer> X
+
+	Buffer y
+    buffer x
+
+
+r = Divide(
+
+	assert(y>x)
+	assert(Y.length() == X.length())
+	assert(x.first) and y.first)
+	x.load()
+	y.load()
+	k=y/x
+	z = k*x
+    carry = y - z
+	carry *= Factor
+	Y.DeleteHead()
+				
+	x.refresh()
+	y.refresh()
+
+	do:
+		y.load()
+		x.load()
+		y += carry
+		z = y - k*x
+		y.save(z)
+	until(x.next & y.next)
+	
+	assert(x.last())
+	assert(y.last())
+	
+	carry = 0
+	do:
+		if carry > 0 or y.Overflow
+		    y.load()
+			if carry > 0:
+				y +=carry
+			 z = y % Factor
+			 carry = (z == y)? 0 : (z-y) / Factor
+		     y.save(z)
+
+	while(x.previous() && y.previous())
+	
+	assert(x.first and y.first)
+	Y.append(Zero)			
+	return (r+carry) 
+
+_______________________________________
+
+Buffer.Refresh():
+	if (pointer != X.begin)
+		pointer = X.begin
+		Loaded = false
+
+load()
+    if load return
+	assert(pointer != end)
+	load
+	assert overflow value is correct
+	return
+
+save:
+	assert load == true
+	save the number
+	set overflow variable
+	return
+
+save(z):
+    load == false
+	set overflow variable
+	save the number
+
+bool Loaded
+bool Overflow
+
+bool First
+bool Last
+
+bool Previous: if (pointer != begin) pointer-- ; loaded=false ; return true
+bool Next: if (pointer != end) pointer++ ; loaded = false ; return true;
+
+%, +=, ==, -, /
+
+Buffer:
+-- loaded bool = false
+-- pointer = number.end()
+-- overflow = false
+	
