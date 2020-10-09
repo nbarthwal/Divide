@@ -1,5 +1,5 @@
 B = 1000
-
+N = 5
 
 def div_mod(p):
     r = p % B
@@ -8,10 +8,11 @@ def div_mod(p):
     return d, r
 
 
-y = [984, 217, 632]
-x = [254, 129, 621]
+y = [456, 984, 217, 632]
+x = [176, 254, 129, 621]
 
-if len(y) == len(x):
+n = len(x)
+if len(y) == n:
     for i in x:
         if i > B:
             raise Exception('Element in X bigger than base')
@@ -30,24 +31,20 @@ for i in x:
 
 print(yy)
 print(xx)
-k = int(B * y[0]/x[0])
 
-print("K = ", k)
-print("Ans = ", yy/xx)
-diff = (yy*B - xx * k)
-print(diff)
+print("Ans = ", yy*1.0/xx*1.0)
 print('______________________________')
+
+r = [None] * N
+for j in range(0, N):
+    r[j] = int(B * y[0] / x[0])
+    carry = 0
+    for i in list(reversed(range(0, n))):
+        (carry, y[i]) = div_mod(carry + B * y[i] - r[j] * x[i])
+    y[0] += B*carry
+
 carry = 0
-y.append(0)
-y.reverse()
-x.reverse()
-
-for i in range(0, len(x)):
-    (carry, y[i+1]) = div_mod(carry + B*y[i+1] - k*x[i])
-carry += y[0]
-del y[0]
-y.reverse()
-y[0] += B * carry
-print(y)
-
-
+for j in list(reversed(range(0, N))):
+    (carry, r[j]) = div_mod(carry + r[j])
+r[0] += carry * B
+print(r)
